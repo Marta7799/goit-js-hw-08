@@ -21,19 +21,20 @@ player.on(
   }, 1000)
 );
 
-player
-  .setCurrentTime(localStorage.getItem(keyStorage))
-  //   .then(function (seconds) {
-  //     player.play().then(function () {
-  //       console.log('the videon was played');
-  //     });
-  //   })
-  .catch(function (error) {
-    switch (error.name) {
-      case 'RangeError':
-        break;
+const currentTime = localStorage.getItem(keyStorage);
+console.log(typeof currentTime);
 
-      default:
-        break;
-    }
-  });
+player.on('loaded', () => {
+  if (currentTime)
+    player
+      .setCurrentTime(Number.parseFloat(currentTime))
+      .catch(function (error) {
+        switch (error.name) {
+          case 'RangeError':
+            break;
+
+          default:
+            break;
+        }
+      });
+});

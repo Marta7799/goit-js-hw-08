@@ -1,5 +1,5 @@
 import Player from '@vimeo/player';
-import { throttle } from 'lodash';
+import throttle from 'lodash.throttle';
 
 const iframe = document.querySelector('iframe');
 const player = new Player(iframe);
@@ -23,11 +23,11 @@ player.on(
 
 player
   .setCurrentTime(localStorage.getItem(keyStorage))
-  .then(function (seconds) {
-    player.play().then(function () {
-      console.log('the videon was played');
-    });
-  })
+  //   .then(function (seconds) {
+  //     player.play().then(function () {
+  //       console.log('the videon was played');
+  //     });
+  //   })
   .catch(function (error) {
     switch (error.name) {
       case 'RangeError':

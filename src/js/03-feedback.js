@@ -16,7 +16,7 @@ form.addEventListener(
 form.addEventListener('submit', e => {
   e.preventDefault();
   console.log({ email: email.value, message: message.value });
-  form.requestFullscreen();
+  form.reset();
   localStorage.removeItem(LOCALSTORAGE_KEY);
 });
 
